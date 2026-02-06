@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ShopHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF9900',
+                        'primary-dark': '#E88B00',
+                        secondary: '#232F3E',
+                        accent: '#146EB4',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="border-b">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-3xl font-bold text-secondary">ShopHub</a>
+                <div class="flex items-center gap-2 text-sm text-gray-600">
+                    <span class="text-accent font-bold">1</span>
+                    <span>Shipping</span>
+                    <span class="text-gray-400">›</span>
+                    <span class="text-gray-400">2</span>
+                    <span class="text-gray-400">Payment</span>
+                    <span class="text-gray-400">›</span>
+                    <span class="text-gray-400">3</span>
+                    <span class="text-gray-400">Review</span>
+                </div>
+                <div class="text-sm text-gray-600">
+                    🔒 Secure Checkout
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left: Checkout Form -->
+            <div class="lg:col-span-2">
+                <!-- Shipping Address -->
+                <div class="border border-gray-300 rounded-lg p-6 mb-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-bold">1. Shipping address</h2>
+                    </div>
+                    <form>
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold mb-2">Full name (First and Last name)</label>
+                            <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold mb-2">Address</label>
+                            <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Street address or P.O. Box" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Apt, suite, unit, building, floor, etc.">
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm font-bold mb-2">City</label>
+                                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2">State</label>
+                                <select class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary" required>
+                                    <option value="">Select</option>
+                                    <option>New York</option>
+                                    <option>California</option>
+                                    <option>Texas</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2">ZIP Code</label>
+                                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary" required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold mb-2">Phone number</label>
+                            <input type="tel" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary" placeholder="May be used to assist delivery" required>
+                        </div>
+                        <button type="button" class="w-full bg-primary hover:bg-primary-dark text-secondary font-medium py-2 rounded-lg">Use this address</button>
+                    </form>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="border border-gray-300 rounded-lg p-6 mb-6">
+                    <h2 class="text-xl font-bold mb-4">2. Payment method</h2>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 p-4 border-2 border-gray-300 rounded cursor-pointer hover:bg-gray-50">
+                            <input type="radio" name="payment" class="w-4 h-4" checked>
+                            <div class="flex-1">
+                                <p class="font-medium">Credit or debit card</p>
+                                <div class="flex gap-2 mt-2">
+                                    <span class="text-xs bg-gray-100 px-2 py-1 rounded">Visa</span>
+                                    <span class="text-xs bg-gray-100 px-2 py-1 rounded">Mastercard</span>
+                                    <span class="text-xs bg-gray-100 px-2 py-1 rounded">Amex</span>
+                                    <span class="text-xs bg-gray-100 px-2 py-1 rounded">Discover</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 p-4 border-2 border-gray-300 rounded cursor-pointer hover:bg-gray-50">
+                            <input type="radio" name="payment" class="w-4 h-4">
+                            <div>
+                                <p class="font-medium">PayPal</p>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 p-4 border-2 border-gray-300 rounded cursor-pointer hover:bg-gray-50">
+                            <input type="radio" name="payment" class="w-4 h-4">
+                            <div>
+                                <p class="font-medium">ShopHub Store Card</p>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="mt-6">
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold mb-2">Card number</label>
+                            <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary" placeholder="1234 5678 9012 3456">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold mb-2">Name on card</label>
+                            <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Expiration date</label>
+                                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary" placeholder="MM/YY">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Security code</label>
+                                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary" placeholder="CVV">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Items -->
+                <div class="border border-gray-300 rounded-lg p-6">
+                    <h2 class="text-xl font-bold mb-4">3. Review items and shipping</h2>
+                    <div class="space-y-4">
+                        <div class="flex gap-4 pb-4 border-b">
+                            <img src="https://via.placeholder.com/100x100/4F46E5/ffffff?text=Product" alt="Product" class="w-24 h-24 object-cover rounded">
+                            <div class="flex-1">
+                                <h3 class="font-medium mb-1">Premium Wireless Headphones</h3>
+                                <p class="text-sm text-gray-600 mb-2">Color: Black</p>
+                                <p class="text-sm font-bold">$129.99</p>
+                            </div>
+                            <div class="text-sm text-gray-600">
+                                Qty: 1
+                            </div>
+                        </div>
+                        <div class="flex gap-4 pb-4 border-b">
+                            <img src="https://via.placeholder.com/100x100/10B981/ffffff?text=Product" alt="Product" class="w-24 h-24 object-cover rounded">
+                            <div class="flex-1">
+                                <h3 class="font-medium mb-1">Smart Watch Pro</h3>
+                                <p class="text-sm text-gray-600 mb-2">Color: Silver</p>
+                                <p class="text-sm font-bold">$299.99</p>
+                            </div>
+                            <div class="text-sm text-gray-600">
+                                Qty: 2
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <img src="https://via.placeholder.com/100x100/F59E0B/ffffff?text=Product" alt="Product" class="w-24 h-24 object-cover rounded">
+                            <div class="flex-1">
+                                <h3 class="font-medium mb-1">Designer Backpack</h3>
+                                <p class="text-sm text-gray-600 mb-2">Color: Navy Blue</p>
+                                <p class="text-sm font-bold">$79.99</p>
+                            </div>
+                            <div class="text-sm text-gray-600">
+                                Qty: 1
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Order Summary -->
+            <div class="lg:col-span-1">
+                <div class="border border-gray-300 rounded-lg p-6 sticky top-4">
+                    <button class="w-full bg-primary hover:bg-primary-dark text-secondary font-medium py-3 rounded-lg mb-4 text-lg">
+                        Place your order
+                    </button>
+                    
+                    <p class="text-xs text-gray-600 mb-4 text-center">
+                        By placing your order, you agree to ShopHub's 
+                        <a href="#" class="text-accent hover:underline">privacy notice</a> and 
+                        <a href="#" class="text-accent hover:underline">conditions of use</a>.
+                    </p>
+
+                    <hr class="my-4">
+
+                    <h3 class="font-bold text-lg mb-4">Order Summary</h3>
+                    
+                    <div class="space-y-2 text-sm mb-4">
+                        <div class="flex justify-between">
+                            <span>Items (4):</span>
+                            <span>$809.96</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Shipping & handling:</span>
+                            <span class="text-green-700 font-bold">FREE</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Total before tax:</span>
+                            <span>$809.96</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Estimated tax:</span>
+                            <span>$64.80</span>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="flex justify-between text-lg font-bold text-red-700">
+                        <span>Order total:</span>
+                        <span>$874.76</span>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded text-sm">
+                        <p class="font-bold text-accent mb-1">🚚 FREE Shipping</p>
+                        <p class="text-gray-700">Your order qualifies for FREE Shipping. Delivery by <span class="font-bold">Tomorrow, Feb 6</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-12 border-t">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="flex justify-center gap-6 text-xs text-accent mb-4">
+                <a href="#" class="hover:underline">Conditions of Use</a>
+                <a href="#" class="hover:underline">Privacy Notice</a>
+                <a href="contact.html" class="hover:underline">Help</a>
+            </div>
+            <p class="text-center text-xs text-gray-600">&copy; 2024 ShopHub. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

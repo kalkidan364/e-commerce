@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Inventory - Seller Central</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF9900',
+                        'primary-dark': '#E88B00',
+                        secondary: '#232F3E',
+                        'secondary-light': '#37475A',
+                        accent: '#146EB4',
+                        'accent-dark': '#0F5A94',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .sidebar-scrollbar::-webkit-scrollbar { width: 6px; }
+        .sidebar-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .sidebar-scrollbar::-webkit-scrollbar-thumb { background: #888; border-radius: 3px; }
+        .sidebar-scrollbar::-webkit-scrollbar-thumb:hover { background: #555; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Header -->
+    <header class="bg-secondary text-white sticky top-0 z-50 shadow-lg">
+        <div class="px-4 py-3">
+            <div class="flex items-center justify-between">
+                <!-- Logo & Title -->
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <h1 class="text-xl font-bold">
+                            <span class="text-white">Shop</span><span class="text-primary">Hub</span>
+                        </h1>
+                    </a>
+                    <div class="hidden md:block text-sm text-gray-300">Seller Central</div>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="hidden lg:flex flex-1 max-w-xl mx-8">
+                    <input type="text" placeholder="Search products by name, SKU, or ASIN..." class="flex-1 px-4 py-2 rounded-l-md text-gray-800 focus:outline-none text-sm">
+                    <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-r-md transition">
+                        <i class="fas fa-search text-secondary"></i>
+                    </button>
+                </div>
+
+                <!-- Right Side -->
+                <div class="flex items-center gap-4">
+                    <!-- Notifications -->
+                    <button class="relative hover:text-primary transition">
+                        <i class="fas fa-bell text-xl"></i>
+                        <span class="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
+                    </button>
+
+                    <!-- Help -->
+                    <button class="hidden md:flex items-center gap-2 hover:text-primary transition text-sm">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help</span>
+                    </button>
+
+                    <!-- Account -->
+                    <div class="flex items-center gap-2 hover:text-primary transition cursor-pointer">
+                        <i class="fas fa-user-circle text-2xl"></i>
+                        <div class="hidden md:block text-sm">
+                            <div class="font-semibold">Admin User</div>
+                        </div>
+                    </div>
+
+                    <!-- View Store -->
+                    <a href="index.html" class="hidden md:block bg-primary hover:bg-primary-dark text-secondary px-4 py-2 rounded-md font-semibold text-sm transition">
+                        View Store
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sub Navigation -->
+        <div class="bg-secondary-light border-t border-gray-700">
+            <div class="px-4 py-2 flex items-center gap-6 text-sm overflow-x-auto">
+                <a href="admin-dashboard.html" class="text-gray-300 hover:text-white transition whitespace-nowrap">Dashboard</a>
+                <a href="admin-orders.html" class="text-gray-300 hover:text-white transition whitespace-nowrap">Orders</a>
+                <a href="admin-products.html" class="text-primary font-semibold whitespace-nowrap">Inventory</a>
+                <a href="#" class="text-gray-300 hover:text-white transition whitespace-nowrap">Advertising</a>
+                <a href="#" class="text-gray-300 hover:text-white transition whitespace-nowrap">Reports</a>
+                <a href="#" class="text-gray-300 hover:text-white transition whitespace-nowrap">Performance</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-gray-200 min-h-screen sticky top-[104px] sidebar-scrollbar overflow-y-auto" style="max-height: calc(100vh - 104px);">
+            <nav class="p-4">
+                <!-- Dashboard Section -->
+                <div class="mb-6">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-2 px-2">Overview</div>
+                    <a href="admin-dashboard.html" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-chart-line w-5"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-tachometer-alt w-5"></i>
+                        <span>Performance</span>
+                    </a>
+                </div>
+
+                <!-- Orders Section -->
+                <div class="mb-6">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-2 px-2">Orders</div>
+                    <a href="admin-orders.html" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-shopping-cart w-5"></i>
+                        <span>Manage Orders</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-truck w-5"></i>
+                        <span>Shipments</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-undo w-5"></i>
+                        <span>Returns</span>
+                    </a>
+                </div>
+
+                <!-- Inventory Section -->
+                <div class="mb-6">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-2 px-2">Inventory</div>
+                    <a href="admin-products.html" class="flex items-center gap-3 px-3 py-2 bg-orange-50 text-primary rounded-md font-semibold mb-1">
+                        <i class="fas fa-boxes w-5"></i>
+                        <span>Manage Inventory</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-plus-circle w-5"></i>
+                        <span>Add Product</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-tags w-5"></i>
+                        <span>Pricing</span>
+                    </a>
+                </div>
+
+                <!-- Advertising Section -->
+                <div class="mb-6">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-2 px-2">Growth</div>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-bullhorn w-5"></i>
+                        <span>Advertising</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-percentage w-5"></i>
+                        <span>Deals</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-gift w-5"></i>
+                        <span>Coupons</span>
+                    </a>
+                </div>
+
+                <!-- Reports Section -->
+                <div class="mb-6">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-2 px-2">Analytics</div>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-chart-bar w-5"></i>
+                        <span>Sales Reports</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-users w-5"></i>
+                        <span>Customers</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-file-invoice-dollar w-5"></i>
+                        <span>Payments</span>
+                    </a>
+                </div>
+
+                <!-- Settings Section -->
+                <div class="mb-6">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-2 px-2">Settings</div>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-cog w-5"></i>
+                        <span>Account Settings</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-store w-5"></i>
+                        <span>Store Settings</span>
+                    </a>
+                    <a href="login.html" class="flex items-center gap-3 px-3 py-2 text-red-600 hover:bg-red-50 rounded-md mb-1">
+                        <i class="fas fa-sign-out-alt w-5"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 bg-gray-50">
+            <div class="max-w-[1400px] mx-auto">
+                <!-- Page Header -->
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Manage Inventory</h2>
+                        <p class="text-gray-600">Track and manage your product catalog</p>
+                    </div>
+                    <button onclick="showAddProductModal()" class="bg-primary hover:bg-primary-dark text-secondary px-6 py-3 rounded-md font-semibold text-sm transition flex items-center gap-2">
+                        <i class="fas fa-plus"></i>
+                        <span>Add Product</span>
+                    </button>
+                </div>
+
+                <!-- Inventory Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-white rounded-lg shadow p-4 border-l-4 border-blue-500">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="text-gray-500 text-sm mb-1">Total Products</div>
+                                <div class="text-2xl font-bold text-gray-800">248</div>
+                            </div>
+                            <div class="bg-blue-100 p-3 rounded-lg">
+                                <i class="fas fa-box text-blue-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow p-4 border-l-4 border-green-500">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="text-gray-500 text-sm mb-1">Active</div>
+                                <div class="text-2xl font-bold text-gray-800">189</div>
+                            </div>
+                            <div class="bg-green-100 p-3 rounded-lg">
+                                <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow p-4 border-l-4 border-yellow-500">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="text-gray-500 text-sm mb-1">Low Stock</div>
+                                <div class="text-2xl font-bold text-gray-800">23</div>
+                            </div>
+                            <div class="bg-yellow-100 p-3 rounded-lg">
+                                <i class="fas fa-exclamation-triangle text-yellow-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow p-4 border-l-4 border-red-500">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="text-gray-500 text-sm mb-1">Out of Stock</div>
+                                <div class="text-2xl font-bold text-gray-800">36</div>
+                            </div>
+                            <div class="bg-red-100 p-3 rounded-lg">
+                                <i class="fas fa-times-circle text-red-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters & Actions -->
+                <div class="bg-white rounded-lg shadow mb-6">
+                    <div class="p-4 border-b border-gray-200">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                            <!-- Filter Tabs -->
+                            <div class="flex gap-2 overflow-x-auto">
+                                <button class="px-4 py-2 bg-primary text-secondary rounded-md font-semibold text-sm whitespace-nowrap">All (248)</button>
+                                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md font-semibold text-sm hover:bg-gray-200 transition whitespace-nowrap">Active (189)</button>
+                                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md font-semibold text-sm hover:bg-gray-200 transition whitespace-nowrap">Inactive (23)</button>
+                                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md font-semibold text-sm hover:bg-gray-200 transition whitespace-nowrap">Low Stock (23)</button>
+                                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md font-semibold text-sm hover:bg-gray-200 transition whitespace-nowrap">Out of Stock (36)</button>
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="flex gap-2">
+                                <button class="px-4 py-2 border border-gray-300 rounded-md text-sm font-semibold hover:bg-gray-50 transition">
+                                    <i class="fas fa-filter mr-2"></i>Filter
+                                </button>
+                                <button class="px-4 py-2 border border-gray-300 rounded-md text-sm font-semibold hover:bg-gray-50 transition">
+                                    <i class="fas fa-download mr-2"></i>Export
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Filters -->
+                    <div class="p-4 bg-gray-50 border-b border-gray-200">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Category</label>
+                                <select class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <option>All categories</option>
+                                    <option>Electronics</option>
+                                    <option>Fashion</option>
+                                    <option>Home & Kitchen</option>
+                                    <option>Sports</option>
+                                    <option>Books</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Stock Status</label>
+                                <select class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <option>All stock levels</option>
+                                    <option>In stock</option>
+                                    <option>Low stock</option>
+                                    <option>Out of stock</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Price Range</label>
+                                <select class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <option>All prices</option>
+                                    <option>Under $50</option>
+                                    <option>$50 - $100</option>
+                                    <option>$100 - $500</option>
+                                    <option>Over $500</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Sort By</label>
+                                <select class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <option>Recently added</option>
+                                    <option>Name A-Z</option>
+                                    <option>Name Z-A</option>
+                                    <option>Price: Low to High</option>
+                                    <option>Price: High to Low</option>
+                                    <option>Stock: Low to High</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Table -->
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50 border-b border-gray-200">
+                                <tr>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-700 text-sm">
+                                        <input type="checkbox" class="rounded">
+                                    </th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-700 text-sm">Image</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-700 text-sm">Product Name</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-700 text-sm">SKU</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-700 text-sm">Category</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-700 text-sm">Price</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-700 text-sm">Stock</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-700 text-sm">Status</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-700 text-sm">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <!-- Product 1 -->
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="py-4 px-4">
+                                        <input type="checkbox" class="rounded">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <img src="https://via.placeholder.com/60x60/4F46E5/ffffff?text=P1" alt="Product" class="w-14 h-14 rounded object-cover">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <a href="#" class="font-semibold text-gray-800 hover:text-accent">Premium Wireless Headphones</a>
+                                        <div class="text-xs text-gray-500 mt-1">Noise Cancelling, Bluetooth 5.0</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">WH-2024-001</td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">Electronics</td>
+                                    <td class="py-4 px-4 font-bold text-gray-800">$129.99</td>
+                                    <td class="py-4 px-4">
+                                        <span class="text-sm font-semibold text-green-700">156</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full font-semibold">Active</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex gap-2">
+                                            <button class="text-accent hover:text-accent-dark" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-blue-600 hover:text-blue-700" title="Duplicate">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-700" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Product 2 -->
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="py-4 px-4">
+                                        <input type="checkbox" class="rounded">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <img src="https://via.placeholder.com/60x60/10B981/ffffff?text=P2" alt="Product" class="w-14 h-14 rounded object-cover">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <a href="#" class="font-semibold text-gray-800 hover:text-accent">Smart Watch Pro</a>
+                                        <div class="text-xs text-gray-500 mt-1">Fitness Tracking, Heart Rate Monitor</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">SW-2024-002</td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">Electronics</td>
+                                    <td class="py-4 px-4 font-bold text-gray-800">$299.99</td>
+                                    <td class="py-4 px-4">
+                                        <span class="text-sm font-semibold text-yellow-700">45</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full font-semibold">Active</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex gap-2">
+                                            <button class="text-accent hover:text-accent-dark" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-blue-600 hover:text-blue-700" title="Duplicate">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-700" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Product 3 -->
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="py-4 px-4">
+                                        <input type="checkbox" class="rounded">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <img src="https://via.placeholder.com/60x60/F59E0B/ffffff?text=P3" alt="Product" class="w-14 h-14 rounded object-cover">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <a href="#" class="font-semibold text-gray-800 hover:text-accent">Designer Backpack</a>
+                                        <div class="text-xs text-gray-500 mt-1">Water Resistant, Laptop Compartment</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">DB-2024-003</td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">Fashion</td>
+                                    <td class="py-4 px-4 font-bold text-gray-800">$79.99</td>
+                                    <td class="py-4 px-4">
+                                        <span class="text-sm font-semibold text-green-700">89</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full font-semibold">Active</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex gap-2">
+                                            <button class="text-accent hover:text-accent-dark" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-blue-600 hover:text-blue-700" title="Duplicate">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-700" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Product 4 -->
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="py-4 px-4">
+                                        <input type="checkbox" class="rounded">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <img src="https://via.placeholder.com/60x60/EF4444/ffffff?text=P4" alt="Product" class="w-14 h-14 rounded object-cover">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <a href="#" class="font-semibold text-gray-800 hover:text-accent">Running Shoes Ultra</a>
+                                        <div class="text-xs text-gray-500 mt-1">Breathable, Cushioned Sole</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">RS-2024-004</td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">Sports</td>
+                                    <td class="py-4 px-4 font-bold text-gray-800">$149.99</td>
+                                    <td class="py-4 px-4">
+                                        <span class="text-sm font-semibold text-red-700">8</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full font-semibold">Low Stock</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex gap-2">
+                                            <button class="text-accent hover:text-accent-dark" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-blue-600 hover:text-blue-700" title="Duplicate">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-700" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Product 5 -->
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="py-4 px-4">
+                                        <input type="checkbox" class="rounded">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <img src="https://via.placeholder.com/60x60/8B5CF6/ffffff?text=P5" alt="Product" class="w-14 h-14 rounded object-cover">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <a href="#" class="font-semibold text-gray-800 hover:text-accent">4K Ultra HD Smart TV</a>
+                                        <div class="text-xs text-gray-500 mt-1">55 inch, HDR, Smart Features</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">TV-2024-005</td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">Electronics</td>
+                                    <td class="py-4 px-4 font-bold text-gray-800">$599.99</td>
+                                    <td class="py-4 px-4">
+                                        <span class="text-sm font-semibold text-red-700">0</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full font-semibold">Out of Stock</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex gap-2">
+                                            <button class="text-accent hover:text-accent-dark" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-blue-600 hover:text-blue-700" title="Duplicate">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-700" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Product 6 -->
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="py-4 px-4">
+                                        <input type="checkbox" class="rounded">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <img src="https://via.placeholder.com/60x60/EC4899/ffffff?text=P6" alt="Product" class="w-14 h-14 rounded object-cover">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <a href="#" class="font-semibold text-gray-800 hover:text-accent">Mechanical Keyboard RGB</a>
+                                        <div class="text-xs text-gray-500 mt-1">Cherry MX Switches, Backlit</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">KB-2024-006</td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">Electronics</td>
+                                    <td class="py-4 px-4 font-bold text-gray-800">$89.99</td>
+                                    <td class="py-4 px-4">
+                                        <span class="text-sm font-semibold text-green-700">67</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full font-semibold">Active</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex gap-2">
+                                            <button class="text-accent hover:text-accent-dark" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-blue-600 hover:text-blue-700" title="Duplicate">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-700" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Product 7 -->
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="py-4 px-4">
+                                        <input type="checkbox" class="rounded">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <img src="https://via.placeholder.com/60x60/14B8A6/ffffff?text=P7" alt="Product" class="w-14 h-14 rounded object-cover">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <a href="#" class="font-semibold text-gray-800 hover:text-accent">Yoga Mat Premium</a>
+                                        <div class="text-xs text-gray-500 mt-1">Non-Slip, Eco-Friendly Material</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">YM-2024-007</td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">Sports</td>
+                                    <td class="py-4 px-4 font-bold text-gray-800">$34.99</td>
+                                    <td class="py-4 px-4">
+                                        <span class="text-sm font-semibold text-green-700">124</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full font-semibold">Active</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex gap-2">
+                                            <button class="text-accent hover:text-accent-dark" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-blue-600 hover:text-blue-700" title="Duplicate">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-700" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Product 8 -->
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="py-4 px-4">
+                                        <input type="checkbox" class="rounded">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <img src="https://via.placeholder.com/60x60/F97316/ffffff?text=P8" alt="Product" class="w-14 h-14 rounded object-cover">
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <a href="#" class="font-semibold text-gray-800 hover:text-accent">Coffee Maker Deluxe</a>
+                                        <div class="text-xs text-gray-500 mt-1">12-Cup, Programmable, Auto-Shutoff</div>
+                                    </td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">CM-2024-008</td>
+                                    <td class="py-4 px-4 text-sm text-gray-600">Home & Kitchen</td>
+                                    <td class="py-4 px-4 font-bold text-gray-800">$54.99</td>
+                                    <td class="py-4 px-4">
+                                        <span class="text-sm font-semibold text-yellow-700">15</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full font-semibold">Active</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <div class="flex gap-2">
+                                            <button class="text-accent hover:text-accent-dark" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-blue-600 hover:text-blue-700" title="Duplicate">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-700" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="px-4 py-4 border-t border-gray-200 flex items-center justify-between">
+                        <div class="text-sm text-gray-600">
+                            Showing <span class="font-semibold">1-8</span> of <span class="font-semibold">248</span> products
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="px-3 py-2 border border-gray-300 rounded-md text-sm font-semibold text-gray-600 hover:bg-gray-50 transition disabled:opacity-50" disabled>
+                                <i class="fas fa-chevron-left mr-1"></i> Previous
+                            </button>
+                            <button class="px-3 py-2 bg-primary text-secondary rounded-md text-sm font-semibold">1</button>
+                            <button class="px-3 py-2 border border-gray-300 rounded-md text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">2</button>
+                            <button class="px-3 py-2 border border-gray-300 rounded-md text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">3</button>
+                            <button class="px-3 py-2 border border-gray-300 rounded-md text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">4</button>
+                            <span class="px-3 py-2 text-gray-500">...</span>
+                            <button class="px-3 py-2 border border-gray-300 rounded-md text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">31</button>
+                            <button class="px-3 py-2 border border-gray-300 rounded-md text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">
+                                Next <i class="fas fa-chevron-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bulk Actions Bar (appears when items selected) -->
+                <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-secondary text-white rounded-lg shadow-2xl px-6 py-4 hidden" id="bulkActionsBar">
+                    <div class="flex items-center gap-6">
+                        <span class="font-semibold"><span id="selectedCount">0</span> products selected</span>
+                        <div class="flex gap-3">
+                            <button class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md font-semibold text-sm transition">
+                                <i class="fas fa-check mr-2"></i>Activate
+                            </button>
+                            <button class="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 rounded-md font-semibold text-sm transition">
+                                <i class="fas fa-pause mr-2"></i>Deactivate
+                            </button>
+                            <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md font-semibold text-sm transition">
+                                <i class="fas fa-tag mr-2"></i>Update Price
+                            </button>
+                            <button class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-md font-semibold text-sm transition">
+                                <i class="fas fa-trash mr-2"></i>Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="productModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+                <h2 class="text-xl font-bold text-gray-800">Add New Product</h2>
+                <button onclick="closeProductModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="p-6 space-y-6">
+                <!-- Product Information -->
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Product Information</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Product Name *</label>
+                            <input type="text" required class="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Enter product name">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">SKU *</label>
+                                <input type="text" required class="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="e.g., PRD-2024-001">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Brand</label>
+                                <input type="text" class="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Enter brand name">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Description *</label>
+                            <textarea rows="4" required class="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Describe your product..."></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Category *</label>
+                            <select required class="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option value="">Select a category</option>
+                                <option>Electronics</option>
+                                <option>Fashion</option>
+                                <option>Home & Kitchen</option>
+                                <option>Sports & Outdoors</option>
+                                <option>Books</option>
+                                <option>Toys & Games</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing & Inventory -->
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Pricing & Inventory</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Price ($) *</label>
+                            <input type="number" step="0.01" min="0" required class="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="0.00">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Compare at Price ($)</label>
+                            <input type="number" step="0.01" min="0" class="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="0.00">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Stock Quantity *</label>
+                            <input type="number" min="0" required class="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Images -->
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Product Images</h3>
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
+                        <p class="text-sm text-gray-600 mb-2">Drag and drop images here, or click to browse</p>
+                        <input type="file" multiple accept="image/*" class="hidden" id="productImages">
+                        <button type="button" onclick="document.getElementById('productImages').click()" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-sm font-semibold transition">
+                            Choose Files
+                        </button>
+                        <p class="text-xs text-gray-500 mt-2">Upload up to 5 images. First image will be the main product image.</p>
+                    </div>
+                </div>
+
+                <!-- Product Options -->
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Product Options</h3>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3">
+                            <input type="checkbox" class="w-4 h-4 text-primary rounded">
+                            <span class="text-sm font-medium text-gray-700">Featured Product</span>
+                        </label>
+                        <label class="flex items-center gap-3">
+                            <input type="checkbox" checked class="w-4 h-4 text-primary rounded">
+                            <span class="text-sm font-medium text-gray-700">Active (visible to customers)</span>
+                        </label>
+                        <label class="flex items-center gap-3">
+                            <input type="checkbox" class="w-4 h-4 text-primary rounded">
+                            <span class="text-sm font-medium text-gray-700">Track inventory</span>
+                        </label>
+                        <label class="flex items-center gap-3">
+                            <input type="checkbox" class="w-4 h-4 text-primary rounded">
+                            <span class="text-sm font-medium text-gray-700">Allow backorders</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="flex gap-3 pt-4 border-t border-gray-200">
+                    <button type="button" onclick="closeProductModal()" class="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-md font-semibold hover:bg-gray-50 transition">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 px-6 py-3 bg-primary hover:bg-primary-dark text-secondary rounded-md font-semibold transition">
+                        Add Product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-6 mt-8">
+        <div class="max-w-[1400px] mx-auto px-6 text-center text-gray-600 text-sm">
+            <p>&copy; 2024 ShopHub Seller Central. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        function showAddProductModal() {
+            document.getElementById('productModal').classList.remove('hidden');
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.add('hidden');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('productModal');
+            if (event.target === modal) {
+                closeProductModal();
+            }
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeProductModal();
+            }
+        });
+    </script>
+</body>
+</html>

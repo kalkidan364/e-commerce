@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - ShopHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF9900',
+                        'primary-dark': '#E88B00',
+                        secondary: '#232F3E',
+                        accent: '#146EB4',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Header -->
+    <header class="bg-secondary text-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Top Bar -->
+            <div class="flex items-center justify-between py-2 text-sm">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="font-bold text-xl">ShopHub</a>
+                    <div class="flex items-center gap-2 hover:border border-white px-2 py-1 cursor-pointer">
+                        <span>📍</span>
+                        <div>
+                            <p class="text-xs text-gray-300">Deliver to</p>
+                            <p class="font-bold">New York 10001</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="flex-1 max-w-2xl mx-8">
+                    <div class="flex">
+                        <select class="bg-gray-200 text-gray-800 px-3 rounded-l-md border-r border-gray-300">
+                            <option>All</option>
+                            <option>Electronics</option>
+                            <option>Fashion</option>
+                            <option>Home</option>
+                        </select>
+                        <input type="text" placeholder="Search ShopHub" class="flex-1 px-4 py-2 text-gray-800">
+                        <button class="bg-primary hover:bg-primary-dark px-6 rounded-r-md">
+                            <span class="text-xl">🔍</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-6">
+                    <a href="login.html" class="hover:border border-white px-2 py-1">
+                        <p class="text-xs">Hello, Sign in</p>
+                        <p class="font-bold">Account & Lists</p>
+                    </a>
+                    <a href="order-tracking.html" class="hover:border border-white px-2 py-1">
+                        <p class="text-xs">Returns</p>
+                        <p class="font-bold">& Orders</p>
+                    </a>
+                    <a href="cart.html" class="flex items-center hover:border border-white px-2 py-1">
+                        <span class="text-3xl">🛒</span>
+                        <span class="font-bold ml-2">Cart</span>
+                        <span class="bg-primary rounded-full w-5 h-5 flex items-center justify-center text-xs ml-1">3</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Navigation Bar -->
+            <div class="flex items-center gap-6 py-2 text-sm border-t border-gray-700">
+                <button class="flex items-center gap-2 hover:border border-white px-2 py-1">
+                    <span>☰</span>
+                    <span class="font-bold">All</span>
+                </button>
+                <a href="categories.html" class="hover:border border-white px-2 py-1">Today's Deals</a>
+                <a href="categories.html" class="hover:border border-white px-2 py-1">Customer Service</a>
+                <a href="categories.html" class="hover:border border-white px-2 py-1">Registry</a>
+                <a href="categories.html" class="hover:border border-white px-2 py-1">Gift Cards</a>
+                <a href="categories.html" class="hover:border border-white px-2 py-1">Sell</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 py-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Cart Items -->
+            <div class="lg:col-span-2">
+                <div class="bg-white p-6 rounded shadow-sm mb-4">
+                    <h1 class="text-3xl font-bold mb-4">Shopping Cart</h1>
+                    <p class="text-sm text-gray-600 mb-4">Price</p>
+                    <hr class="mb-4">
+
+                    <!-- Cart Item 1 -->
+                    <div class="flex gap-4 pb-6 mb-6 border-b">
+                        <img src="https://via.placeholder.com/180x180/4F46E5/ffffff?text=Product" alt="Product" class="w-44 h-44 object-cover rounded">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-medium mb-2">Premium Wireless Headphones with Active Noise Cancellation</h3>
+                            <p class="text-secondary text-sm mb-2">In Stock</p>
+                            <p class="text-xs text-gray-600 mb-2">Eligible for FREE Shipping</p>
+                            <div class="flex items-center gap-2 mb-3">
+                                <select class="border border-gray-300 rounded px-3 py-1 text-sm">
+                                    <option>Qty: 1</option>
+                                    <option>Qty: 2</option>
+                                    <option>Qty: 3</option>
+                                    <option>Qty: 4</option>
+                                    <option>Qty: 5</option>
+                                </select>
+                                <button class="text-sm text-accent hover:underline">Delete</button>
+                                <span class="text-gray-300">|</span>
+                                <button class="text-sm text-accent hover:underline">Save for later</button>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-2xl font-bold">$129<sup class="text-sm">.99</sup></p>
+                        </div>
+                    </div>
+
+                    <!-- Cart Item 2 -->
+                    <div class="flex gap-4 pb-6 mb-6 border-b">
+                        <img src="https://via.placeholder.com/180x180/10B981/ffffff?text=Product" alt="Product" class="w-44 h-44 object-cover rounded">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-medium mb-2">Smart Watch Pro with Fitness Tracking</h3>
+                            <p class="text-secondary text-sm mb-2">In Stock</p>
+                            <p class="text-xs text-gray-600 mb-2">Eligible for FREE Shipping</p>
+                            <div class="flex items-center gap-2 mb-3">
+                                <select class="border border-gray-300 rounded px-3 py-1 text-sm">
+                                    <option>Qty: 1</option>
+                                    <option selected>Qty: 2</option>
+                                    <option>Qty: 3</option>
+                                    <option>Qty: 4</option>
+                                    <option>Qty: 5</option>
+                                </select>
+                                <button class="text-sm text-accent hover:underline">Delete</button>
+                                <span class="text-gray-300">|</span>
+                                <button class="text-sm text-accent hover:underline">Save for later</button>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-2xl font-bold">$299<sup class="text-sm">.99</sup></p>
+                        </div>
+                    </div>
+
+                    <!-- Cart Item 3 -->
+                    <div class="flex gap-4 pb-6">
+                        <img src="https://via.placeholder.com/180x180/F59E0B/ffffff?text=Product" alt="Product" class="w-44 h-44 object-cover rounded">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-medium mb-2">Designer Backpack with Laptop Compartment</h3>
+                            <p class="text-secondary text-sm mb-2">In Stock</p>
+                            <p class="text-xs text-gray-600 mb-2">Eligible for FREE Shipping</p>
+                            <div class="flex items-center gap-2 mb-3">
+                                <select class="border border-gray-300 rounded px-3 py-1 text-sm">
+                                    <option>Qty: 1</option>
+                                    <option>Qty: 2</option>
+                                    <option>Qty: 3</option>
+                                    <option>Qty: 4</option>
+                                    <option>Qty: 5</option>
+                                </select>
+                                <button class="text-sm text-accent hover:underline">Delete</button>
+                                <span class="text-gray-300">|</span>
+                                <button class="text-sm text-accent hover:underline">Save for later</button>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-2xl font-bold">$79<sup class="text-sm">.99</sup></p>
+                        </div>
+                    </div>
+
+                    <div class="text-right pt-4">
+                        <p class="text-lg">Subtotal (4 items): <span class="text-2xl font-bold">$809<sup class="text-sm">.96</sup></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="lg:col-span-1">
+                <div class="bg-white p-6 rounded shadow-sm sticky top-4">
+                    <div class="mb-4">
+                        <p class="text-lg mb-2">Subtotal (4 items): <span class="text-2xl font-bold">$809<sup class="text-sm">.96</sup></span></p>
+                        <label class="flex items-center gap-2 text-sm">
+                            <input type="checkbox" class="w-4 h-4">
+                            <span>This order contains a gift</span>
+                        </label>
+                    </div>
+                    <a href="checkout.html" class="block w-full bg-primary hover:bg-primary-dark text-center text-secondary font-medium py-2 rounded-lg mb-3">Proceed to checkout</a>
+                    
+                    <hr class="my-4">
+                    
+                    <div class="text-sm text-gray-700">
+                        <p class="mb-2 flex justify-between">
+                            <span>Items:</span>
+                            <span>$809.96</span>
+                        </p>
+                        <p class="mb-2 flex justify-between">
+                            <span>Shipping & handling:</span>
+                            <span class="text-secondary font-bold">FREE</span>
+                        </p>
+                        <p class="mb-2 flex justify-between">
+                            <span>Total before tax:</span>
+                            <span>$809.96</span>
+                        </p>
+                        <p class="mb-2 flex justify-between">
+                            <span>Estimated tax:</span>
+                            <span>$64.80</span>
+                        </p>
+                        <hr class="my-2">
+                        <p class="flex justify-between text-lg font-bold text-red-700">
+                            <span>Order total:</span>
+                            <span>$874.76</span>
+                        </p>
+                    </div>
+
+                    <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded text-sm">
+                        <p class="font-bold text-accent mb-1">🚚 FREE Shipping</p>
+                        <p class="text-gray-700">Your order qualifies for FREE Shipping. Choose this option at checkout.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white mt-12">
+        <div class="bg-gray-700 hover:bg-gray-600 text-center py-4 cursor-pointer">
+            <p class="text-sm">Back to top</p>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="grid grid-cols-4 gap-8 text-sm">
+                <div>
+                    <h3 class="font-bold mb-3">Get to Know Us</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="about.html" class="hover:underline">About Us</a></li>
+                        <li><a href="#" class="hover:underline">Careers</a></li>
+                        <li><a href="#" class="hover:underline">Press Releases</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-3">Make Money with Us</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:underline">Sell on ShopHub</a></li>
+                        <li><a href="#" class="hover:underline">Become an Affiliate</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-3">Let Us Help You</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="profile.html" class="hover:underline">Your Account</a></li>
+                        <li><a href="order-tracking.html" class="hover:underline">Your Orders</a></li>
+                        <li><a href="contact.html" class="hover:underline">Customer Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-3">ShopHub Payment</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:underline">ShopHub Rewards</a></li>
+                        <li><a href="#" class="hover:underline">Shop with Points</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 py-4 text-center text-sm text-gray-400">
+            <p>&copy; 2024 ShopHub. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

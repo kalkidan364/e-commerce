@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopHub - Your Online Shopping Destination</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF9900',
+                        'primary-dark': '#E88B00',
+                        secondary: '#232F3E',
+                        'secondary-light': '#37475A',
+                        accent: '#146EB4',
+                        'accent-dark': '#0F5A94',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .carousel-item { display: none; }
+        .carousel-item.active { display: block; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Top Header Bar -->
+    <div class="bg-secondary text-white text-sm">
+        <div class="max-w-[1500px] mx-auto px-4 py-2 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <span><i class="fas fa-map-marker-alt mr-1"></i> Deliver to New York 10001</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="#" class="hover:text-primary transition">Customer Service</a>
+                <a href="#" class="hover:text-primary transition">Today's Deals</a>
+                <a href="#" class="hover:text-primary transition">Gift Cards</a>
+                <a href="register.html" class="hover:text-primary transition">Register</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="bg-secondary-light text-white sticky top-0 z-50 shadow-lg">
+        <div class="max-w-[1500px] mx-auto px-4 py-3">
+            <div class="flex items-center gap-4">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center">
+                    <h1 class="text-2xl font-bold">
+                        <span class="text-white">Shop</span><span class="text-primary">Hub</span>
+                    </h1>
+                </a>
+
+                <!-- Delivery Location -->
+                <div class="hidden lg:flex items-center gap-2 px-3 py-2 hover:border border-white rounded cursor-pointer">
+                    <i class="fas fa-map-marker-alt text-primary"></i>
+                    <div class="text-xs">
+                        <div class="text-gray-300">Deliver to</div>
+                        <div class="font-bold">New York 10001</div>
+                    </div>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="flex-1 max-w-3xl">
+                    <div class="flex">
+                        <select class="bg-gray-200 text-gray-800 px-3 py-2 rounded-l-md border-r-2 border-gray-300 focus:outline-none text-sm">
+                            <option>All</option>
+                            <option>Electronics</option>
+                            <option>Fashion</option>
+                            <option>Home & Kitchen</option>
+                            <option>Sports</option>
+                            <option>Books</option>
+                        </select>
+                        <input type="text" placeholder="Search ShopHub" class="flex-1 px-4 py-2 text-gray-800 focus:outline-none">
+                        <button class="bg-primary hover:bg-primary-dark px-6 py-2 rounded-r-md transition">
+                            <i class="fas fa-search text-secondary"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Side Icons -->
+                <div class="flex items-center gap-6">
+                    <!-- Language -->
+                    <div class="hidden md:flex items-center gap-1 hover:border border-white rounded px-2 py-1 cursor-pointer">
+                        <i class="fas fa-globe"></i>
+                        <span class="text-sm">EN</span>
+                    </div>
+
+                    <!-- Account -->
+                    <a href="login.html" class="hidden md:flex flex-col hover:border border-white rounded px-2 py-1">
+                        <span class="text-xs">Hello, Sign in</span>
+                        <span class="text-sm font-bold">Account & Lists</span>
+                    </a>
+
+                    <!-- Orders -->
+                    <a href="order-tracking.html" class="hidden lg:flex flex-col hover:border border-white rounded px-2 py-1">
+                        <span class="text-xs">Returns</span>
+                        <span class="text-sm font-bold">& Orders</span>
+                    </a>
+
+                    <!-- Cart -->
+                    <a href="cart.html" class="flex items-center gap-2 hover:border border-white rounded px-3 py-1 relative">
+                        <div class="relative">
+                            <i class="fas fa-shopping-cart text-2xl"></i>
+                            <span class="absolute -top-2 -right-2 bg-primary text-secondary text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                        </div>
+                        <span class="hidden md:block font-bold">Cart</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="bg-secondary">
+            <div class="max-w-[1500px] mx-auto px-4 py-2">
+                <div class="flex items-center gap-6 text-sm">
+                    <button class="flex items-center gap-2 hover:border border-white rounded px-2 py-1">
+                        <i class="fas fa-bars"></i>
+                        <span class="font-bold">All</span>
+                    </button>
+                    <a href="products.html" class="hover:border border-white rounded px-2 py-1">Today's Deals</a>
+                    <a href="#" class="hover:border border-white rounded px-2 py-1">Customer Service</a>
+                    <a href="#" class="hover:border border-white rounded px-2 py-1">Registry</a>
+                    <a href="#" class="hover:border border-white rounded px-2 py-1">Gift Cards</a>
+                    <a href="products.html" class="hover:border border-white rounded px-2 py-1">Sell</a>
+                    <a href="#" class="text-primary hover:text-primary-dark font-bold">Shop deals in Electronics</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Carousel -->
+    <section class="relative bg-gradient-to-b from-gray-200 to-gray-100">
+        <div class="max-w-[1500px] mx-auto relative">
+            <div class="relative h-[400px] overflow-hidden">
+                <!-- Carousel Item 1 -->
+                <div class="carousel-item active absolute w-full h-full">
+                    <img src="https://via.placeholder.com/1500x400/146EB4/ffffff?text=Summer+Sale+-+Up+to+50%+Off" alt="Sale" class="w-full h-full object-cover">
+                </div>
+                <!-- Carousel Item 2 -->
+                <div class="carousel-item absolute w-full h-full">
+                    <img src="https://via.placeholder.com/1500x400/FF9900/ffffff?text=New+Arrivals+-+Shop+Now" alt="New Arrivals" class="w-full h-full object-cover">
+                </div>
+                <!-- Carousel Item 3 -->
+                <div class="carousel-item absolute w-full h-full">
+                    <img src="https://via.placeholder.com/1500x400/232F3E/ffffff?text=Electronics+Deals" alt="Electronics" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Carousel Controls -->
+                <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 p-3 rounded-md shadow-lg">
+                    <i class="fas fa-chevron-left text-secondary"></i>
+                </button>
+                <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 p-3 rounded-md shadow-lg">
+                    <i class="fas fa-chevron-right text-secondary"></i>
+                </button>
+            </div>
+
+            <!-- Overlay Cards on Carousel -->
+            <div class="absolute bottom-0 left-0 right-0 px-4 pb-8">
+                <div class="max-w-[1500px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 shadow-lg">
+                        <h3 class="text-xl font-bold mb-4">Gaming accessories</h3>
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <img src="https://via.placeholder.com/150x150/4F46E5/ffffff?text=Headset" alt="Headset" class="w-full mb-2">
+                                <p class="text-xs">Headsets</p>
+                            </div>
+                            <div>
+                                <img src="https://via.placeholder.com/150x150/10B981/ffffff?text=Keyboard" alt="Keyboard" class="w-full mb-2">
+                                <p class="text-xs">Keyboards</p>
+                            </div>
+                            <div>
+                                <img src="https://via.placeholder.com/150x150/F59E0B/ffffff?text=Mouse" alt="Mouse" class="w-full mb-2">
+                                <p class="text-xs">Computer mice</p>
+                            </div>
+                            <div>
+                                <img src="https://via.placeholder.com/150x150/EF4444/ffffff?text=Chair" alt="Chair" class="w-full mb-2">
+                                <p class="text-xs">Chairs</p>
+                            </div>
+                        </div>
+                        <a href="products.html" class="text-accent hover:text-accent-dark text-sm">See more</a>
+                    </div>
+
+                    <div class="bg-white p-6 shadow-lg">
+                        <h3 class="text-xl font-bold mb-4">Shop by Category</h3>
+                        <img src="https://via.placeholder.com/300x200/146EB4/ffffff?text=Electronics" alt="Electronics" class="w-full mb-4">
+                        <a href="categories.html" class="text-accent hover:text-accent-dark text-sm">Shop now</a>
+                    </div>
+
+                    <div class="bg-white p-6 shadow-lg">
+                        <h3 class="text-xl font-bold mb-4">Fashion trends</h3>
+                        <img src="https://via.placeholder.com/300x200/FF9900/ffffff?text=Fashion" alt="Fashion" class="w-full mb-4">
+                        <a href="products.html" class="text-accent hover:text-accent-dark text-sm">Explore more</a>
+                    </div>
+
+                    <div class="bg-white p-6 shadow-lg">
+                        <h3 class="text-xl font-bold mb-4">Home refresh ideas</h3>
+                        <img src="https://via.placeholder.com/300x200/232F3E/ffffff?text=Home" alt="Home" class="w-full mb-4">
+                        <a href="products.html" class="text-accent hover:text-accent-dark text-sm">Discover more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Today's Deals -->
+    <section class="py-8 bg-white">
+        <div class="max-w-[1500px] mx-auto px-4">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold">Today's Deals</h2>
+                <a href="products.html" class="text-accent hover:text-accent-dark">See all deals</a>
+            </div>
+            <div class="flex gap-4 overflow-x-auto scrollbar-hide pb-4">
+                <div class="min-w-[280px] bg-white border rounded-lg overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/280x280/4F46E5/ffffff?text=Deal+1" alt="Deal" class="w-full">
+                        <span class="absolute top-2 left-2 bg-red-600 text-white px-3 py-1 text-sm font-bold rounded">30% off</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-red-600 font-bold text-sm mb-1">Deal of the Day</div>
+                        <h3 class="font-semibold mb-2 line-clamp-2">Premium Wireless Headphones with Noise Cancellation</h3>
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="text-2xl font-bold text-red-600">$129.99</span>
+                            <span class="text-sm text-gray-500 line-through">$199.99</span>
+                        </div>
+                        <div class="text-sm text-gray-600">⭐ 4.5 (2,345 reviews)</div>
+                    </div>
+                </div>
+
+                <div class="min-w-[280px] bg-white border rounded-lg overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/280x280/10B981/ffffff?text=Deal+2" alt="Deal" class="w-full">
+                        <span class="absolute top-2 left-2 bg-red-600 text-white px-3 py-1 text-sm font-bold rounded">25% off</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-red-600 font-bold text-sm mb-1">Limited time deal</div>
+                        <h3 class="font-semibold mb-2 line-clamp-2">Smart Watch Pro with Fitness Tracking</h3>
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="text-2xl font-bold text-red-600">$299.99</span>
+                            <span class="text-sm text-gray-500 line-through">$399.99</span>
+                        </div>
+                        <div class="text-sm text-gray-600">⭐ 4.7 (1,892 reviews)</div>
+                    </div>
+                </div>
+
+                <div class="min-w-[280px] bg-white border rounded-lg overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/280x280/F59E0B/ffffff?text=Deal+3" alt="Deal" class="w-full">
+                        <span class="absolute top-2 left-2 bg-red-600 text-white px-3 py-1 text-sm font-bold rounded">40% off</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-red-600 font-bold text-sm mb-1">Deal of the Day</div>
+                        <h3 class="font-semibold mb-2 line-clamp-2">Designer Backpack - Water Resistant</h3>
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="text-2xl font-bold text-red-600">$59.99</span>
+                            <span class="text-sm text-gray-500 line-through">$99.99</span>
+                        </div>
+                        <div class="text-sm text-gray-600">⭐ 4.6 (3,421 reviews)</div>
+                    </div>
+                </div>
+
+                <div class="min-w-[280px] bg-white border rounded-lg overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/280x280/EF4444/ffffff?text=Deal+4" alt="Deal" class="w-full">
+                        <span class="absolute top-2 left-2 bg-red-600 text-white px-3 py-1 text-sm font-bold rounded">35% off</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-red-600 font-bold text-sm mb-1">Limited time deal</div>
+                        <h3 class="font-semibold mb-2 line-clamp-2">Running Shoes Ultra - Men's & Women's</h3>
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="text-2xl font-bold text-red-600">$89.99</span>
+                            <span class="text-sm text-gray-500 line-through">$139.99</span>
+                        </div>
+                        <div class="text-sm text-gray-600">⭐ 4.8 (5,234 reviews)</div>
+                    </div>
+                </div>
+
+                <div class="min-w-[280px] bg-white border rounded-lg overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/280x280/8B5CF6/ffffff?text=Deal+5" alt="Deal" class="w-full">
+                        <span class="absolute top-2 left-2 bg-red-600 text-white px-3 py-1 text-sm font-bold rounded">20% off</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-red-600 font-bold text-sm mb-1">Deal of the Day</div>
+                        <h3 class="font-semibold mb-2 line-clamp-2">4K Ultra HD Smart TV - 55 inch</h3>
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="text-2xl font-bold text-red-600">$479.99</span>
+                            <span class="text-sm text-gray-500 line-through">$599.99</span>
+                        </div>
+                        <div class="text-sm text-gray-600">⭐ 4.4 (987 reviews)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Grid -->
+    <section class="py-8 bg-gray-100">
+        <div class="max-w-[1500px] mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Electronics -->
+                <div class="bg-white p-6 shadow hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold mb-4">Electronics</h3>
+                    <img src="https://via.placeholder.com/300x200/146EB4/ffffff?text=Electronics" alt="Electronics" class="w-full mb-4 rounded">
+                    <a href="products.html" class="text-accent hover:text-accent-dark text-sm font-semibold">Shop now</a>
+                </div>
+
+                <!-- Fashion -->
+                <div class="bg-white p-6 shadow hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold mb-4">Fashion</h3>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div>
+                            <img src="https://via.placeholder.com/150x150/FF9900/ffffff?text=Men" alt="Men" class="w-full rounded mb-1">
+                            <p class="text-xs">Men's clothing</p>
+                        </div>
+                        <div>
+                            <img src="https://via.placeholder.com/150x150/232F3E/ffffff?text=Women" alt="Women" class="w-full rounded mb-1">
+                            <p class="text-xs">Women's clothing</p>
+                        </div>
+                    </div>
+                    <a href="products.html" class="text-accent hover:text-accent-dark text-sm font-semibold">See more</a>
+                </div>
+
+                <!-- Home & Kitchen -->
+                <div class="bg-white p-6 shadow hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold mb-4">Home & Kitchen</h3>
+                    <img src="https://via.placeholder.com/300x200/10B981/ffffff?text=Home" alt="Home" class="w-full mb-4 rounded">
+                    <a href="products.html" class="text-accent hover:text-accent-dark text-sm font-semibold">Discover more</a>
+                </div>
+
+                <!-- Sports & Outdoors -->
+                <div class="bg-white p-6 shadow hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold mb-4">Sports & Outdoors</h3>
+                    <img src="https://via.placeholder.com/300x200/F59E0B/ffffff?text=Sports" alt="Sports" class="w-full mb-4 rounded">
+                    <a href="products.html" class="text-accent hover:text-accent-dark text-sm font-semibold">Explore now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Sellers -->
+    <section class="py-8 bg-white">
+        <div class="max-w-[1500px] mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6">Best Sellers in Electronics</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <a href="product-detail.html" class="group">
+                    <div class="bg-white border rounded-lg p-4 hover:shadow-lg transition">
+                        <img src="https://via.placeholder.com/200x200/4F46E5/ffffff?text=Product" alt="Product" class="w-full mb-3">
+                        <h3 class="text-sm mb-2 line-clamp-2 group-hover:text-accent">Wireless Earbuds Pro with Charging Case</h3>
+                        <div class="text-sm text-gray-600 mb-1">⭐ 4.5</div>
+                        <div class="text-lg font-bold">$79.99</div>
+                        <div class="text-xs text-gray-500">FREE delivery</div>
+                    </div>
+                </a>
+
+                <a href="product-detail.html" class="group">
+                    <div class="bg-white border rounded-lg p-4 hover:shadow-lg transition">
+                        <img src="https://via.placeholder.com/200x200/10B981/ffffff?text=Product" alt="Product" class="w-full mb-3">
+                        <h3 class="text-sm mb-2 line-clamp-2 group-hover:text-accent">USB-C Fast Charging Cable 6ft</h3>
+                        <div class="text-sm text-gray-600 mb-1">⭐ 4.7</div>
+                        <div class="text-lg font-bold">$12.99</div>
+                        <div class="text-xs text-gray-500">FREE delivery</div>
+                    </div>
+                </a>
+
+                <a href="product-detail.html" class="group">
+                    <div class="bg-white border rounded-lg p-4 hover:shadow-lg transition">
+                        <img src="https://via.placeholder.com/200x200/F59E0B/ffffff?text=Product" alt="Product" class="w-full mb-3">
+                        <h3 class="text-sm mb-2 line-clamp-2 group-hover:text-accent">Portable Power Bank 20000mAh</h3>
+                        <div class="text-sm text-gray-600 mb-1">⭐ 4.6</div>
+                        <div class="text-lg font-bold">$29.99</div>
+                        <div class="text-xs text-gray-500">FREE delivery</div>
+                    </div>
+                </a>
+
+                <a href="product-detail.html" class="group">
+                    <div class="bg-white border rounded-lg p-4 hover:shadow-lg transition">
+                        <img src="https://via.placeholder.com/200x200/EF4444/ffffff?text=Product" alt="Product" class="w-full mb-3">
+                        <h3 class="text-sm mb-2 line-clamp-2 group-hover:text-accent">Bluetooth Speaker Waterproof</h3>
+                        <div class="text-sm text-gray-600 mb-1">⭐ 4.8</div>
+                        <div class="text-lg font-bold">$49.99</div>
+                        <div class="text-xs text-gray-500">FREE delivery</div>
+                    </div>
+                </a>
+
+                <a href="product-detail.html" class="group">
+                    <div class="bg-white border rounded-lg p-4 hover:shadow-lg transition">
+                        <img src="https://via.placeholder.com/200x200/8B5CF6/ffffff?text=Product" alt="Product" class="w-full mb-3">
+                        <h3 class="text-sm mb-2 line-clamp-2 group-hover:text-accent">Wireless Gaming Mouse RGB</h3>
+                        <div class="text-sm text-gray-600 mb-1">⭐ 4.5</div>
+                        <div class="text-lg font-bold">$39.99</div>
+                        <div class="text-xs text-gray-500">FREE delivery</div>
+                    </div>
+                </a>
+
+                <a href="product-detail.html" class="group">
+                    <div class="bg-white border rounded-lg p-4 hover:shadow-lg transition">
+                        <img src="https://via.placeholder.com/200x200/EC4899/ffffff?text=Product" alt="Product" class="w-full mb-3">
+                        <h3 class="text-sm mb-2 line-clamp-2 group-hover:text-accent">Mechanical Keyboard RGB Backlit</h3>
+                        <div class="text-sm text-gray-600 mb-1">⭐ 4.7</div>
+                        <div class="text-lg font-bold">$69.99</div>
+                        <div class="text-xs text-gray-500">FREE delivery</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended for You -->
+    <section class="py-8 bg-gray-100">
+        <div class="max-w-[1500px] mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6">Recommended for you</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <a href="product-detail.html" class="bg-white rounded-lg overflow-hidden hover:shadow-lg transition">
+                    <img src="https://via.placeholder.com/250x250/146EB4/ffffff?text=Item" alt="Item" class="w-full">
+                    <div class="p-3">
+                        <div class="text-sm mb-1 line-clamp-2">Premium Cotton T-Shirt</div>
+                        <div class="text-lg font-bold">$24.99</div>
+                    </div>
+                </a>
+
+                <a href="product-detail.html" class="bg-white rounded-lg overflow-hidden hover:shadow-lg transition">
+                    <img src="https://via.placeholder.com/250x250/FF9900/ffffff?text=Item" alt="Item" class="w-full">
+                    <div class="p-3">
+                        <div class="text-sm mb-1 line-clamp-2">Stainless Steel Water Bottle</div>
+                        <div class="text-lg font-bold">$19.99</div>
+                    </div>
+                </a>
+
+                <a href="product-detail.html" class="bg-white rounded-lg overflow-hidden hover:shadow-lg transition">
+                    <img src="https://via.placeholder.com/250x250/232F3E/ffffff?text=Item" alt="Item" class="w-full">
+                    <div class="p-3">
+                        <div class="text-sm mb-1 line-clamp-2">Yoga Mat Non-Slip</div>
+                        <div class="text-lg font-bold">$34.99</div>
+                    </div>
+                </a>
+
+                <a href="product-detail.html" class="bg-white rounded-lg overflow-hidden hover:shadow-lg transition">
+                    <img src="https://via.placeholder.com/250x250/10B981/ffffff?text=Item" alt="Item" class="w-full">
+                    <div class="p-3">
+                        <div class="text-sm mb-1 line-clamp-2">LED Desk Lamp Adjustable</div>
+                        <div class="text-lg font-bold">$44.99</div>
+                    </div>
+                </a>
+
+                <a href="product-detail.html" class="bg-white rounded-lg overflow-hidden hover:shadow-lg transition">
+                    <img src="https://via.placeholder.com/250x250/F59E0B/ffffff?text=Item" alt="Item" class="w-full">
+                    <div class="p-3">
+                        <div class="text-sm mb-1 line-clamp-2">Coffee Maker 12-Cup</div>
+                        <div class="text-lg font-bold">$54.99</div>
+                    </div>
+                </a>
+
+                <a href="product-detail.html" class="bg-white rounded-lg overflow-hidden hover:shadow-lg transition">
+                    <img src="https://via.placeholder.com/250x250/EF4444/ffffff?text=Item" alt="Item" class="w-full">
+                    <div class="p-3">
+                        <div class="text-sm mb-1 line-clamp-2">Resistance Bands Set</div>
+                        <div class="text-lg font-bold">$29.99</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign In Banner -->
+    <section class="py-8 bg-white border-t border-b">
+        <div class="max-w-[1500px] mx-auto px-4 text-center">
+            <div class="max-w-2xl mx-auto">
+                <h3 class="text-xl mb-4">See personalized recommendations</h3>
+                <a href="login.html" class="inline-block bg-primary hover:bg-primary-dark text-secondary font-bold py-2 px-8 rounded-lg transition">
+                    Sign in
+                </a>
+                <p class="mt-3 text-sm">
+                    New customer? <a href="register.html" class="text-accent hover:text-accent-dark">Start here.</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white">
+        <!-- Back to Top -->
+        <div class="bg-secondary-light hover:bg-opacity-80 transition cursor-pointer">
+            <div class="max-w-[1500px] mx-auto px-4 py-4 text-center text-sm">
+                <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Back to top</a>
+            </div>
+        </div>
+
+        <!-- Main Footer Content -->
+        <div class="max-w-[1500px] mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Get to Know Us -->
+                <div>
+                    <h4 class="font-bold mb-4">Get to Know Us</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="about.html" class="text-gray-300 hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Press Releases</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">ShopHub Science</a></li>
+                    </ul>
+                </div>
+
+                <!-- Make Money with Us -->
+                <div>
+                    <h4 class="font-bold mb-4">Make Money with Us</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Sell on ShopHub</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Become an Affiliate</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Advertise Your Products</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Self-Publish with Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- ShopHub Payment Products -->
+                <div>
+                    <h4 class="font-bold mb-4">ShopHub Payment Products</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">ShopHub Rewards</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Shop with Points</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Reload Your Balance</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Currency Converter</a></li>
+                    </ul>
+                </div>
+
+                <!-- Let Us Help You -->
+                <div>
+                    <h4 class="font-bold mb-4">Let Us Help You</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="profile.html" class="text-gray-300 hover:text-white transition">Your Account</a></li>
+                        <li><a href="order-tracking.html" class="text-gray-300 hover:text-white transition">Your Orders</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Shipping Rates & Policies</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Returns & Replacements</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-white transition">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div class="border-t border-gray-700">
+            <div class="max-w-[1500px] mx-auto px-4 py-6">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-2">
+                        <h3 class="text-xl font-bold">
+                            <span class="text-white">Shop</span><span class="text-primary">Hub</span>
+                        </h3>
+                    </div>
+                    
+                    <div class="flex items-center gap-6 text-sm">
+                        <button class="flex items-center gap-2 border border-gray-600 px-3 py-1 rounded hover:bg-secondary-light transition">
+                            <i class="fas fa-globe"></i>
+                            <span>English</span>
+                        </button>
+                        <button class="flex items-center gap-2 border border-gray-600 px-3 py-1 rounded hover:bg-secondary-light transition">
+                            <span>$ USD</span>
+                        </button>
+                        <button class="flex items-center gap-2 border border-gray-600 px-3 py-1 rounded hover:bg-secondary-light transition">
+                            <i class="fas fa-flag-usa"></i>
+                            <span>United States</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-gray-700 text-center text-xs text-gray-400">
+                    <div class="flex flex-wrap justify-center gap-6 mb-4">
+                        <a href="#" class="hover:text-white transition">Conditions of Use</a>
+                        <a href="#" class="hover:text-white transition">Privacy Notice</a>
+                        <a href="#" class="hover:text-white transition">Your Ads Privacy Choices</a>
+                    </div>
+                    <p>&copy; 2024 ShopHub.com, Inc. or its affiliates</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Carousel Script -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Auto-advance carousel every 5 seconds
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+</html>

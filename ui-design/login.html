@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ShopHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF9900',
+                        'primary-dark': '#E88B00',
+                        secondary: '#232F3E',
+                        accent: '#146EB4',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="border-b">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-center">
+                <a href="index.html" class="text-4xl font-bold text-secondary">ShopHub</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Form -->
+    <div class="max-w-md mx-auto px-4 py-12">
+        <div class="border border-gray-300 rounded-lg p-8">
+            <h1 class="text-3xl font-normal mb-6">Sign in</h1>
+            
+            <form>
+                <div class="mb-4">
+                    <label class="block text-sm font-bold mb-2">Email or mobile phone number</label>
+                    <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                </div>
+
+                <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-secondary font-medium py-2 rounded-lg mb-4">Continue</button>
+
+                <p class="text-xs text-gray-700 mb-4">
+                    By continuing, you agree to ShopHub's 
+                    <a href="#" class="text-accent hover:underline">Conditions of Use</a> and 
+                    <a href="#" class="text-accent hover:underline">Privacy Notice</a>.
+                </p>
+
+                <details class="text-sm">
+                    <summary class="text-accent cursor-pointer hover:underline">Need help?</summary>
+                    <div class="mt-2 space-y-1">
+                        <a href="forgot-password.html" class="block text-accent hover:underline">Forgot your password?</a>
+                        <a href="#" class="block text-accent hover:underline">Other issues with Sign-In</a>
+                    </div>
+                </details>
+            </form>
+        </div>
+
+        <!-- Divider -->
+        <div class="relative my-6">
+            <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-300"></div>
+            </div>
+            <div class="relative flex justify-center text-sm">
+                <span class="px-4 bg-white text-gray-500">New to ShopHub?</span>
+            </div>
+        </div>
+
+        <!-- Create Account Button -->
+        <a href="register.html" class="block w-full text-center bg-gray-100 hover:bg-gray-200 border border-gray-300 text-secondary font-medium py-2 rounded-lg">Create your ShopHub account</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-12 border-t">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="flex justify-center gap-6 text-xs text-accent mb-4">
+                <a href="#" class="hover:underline">Conditions of Use</a>
+                <a href="#" class="hover:underline">Privacy Notice</a>
+                <a href="contact.html" class="hover:underline">Help</a>
+            </div>
+            <p class="text-center text-xs text-gray-600">&copy; 2024 ShopHub. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

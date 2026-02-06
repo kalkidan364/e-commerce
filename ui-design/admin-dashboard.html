@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Central - ShopHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF9900',
+                        'primary-dark': '#E88B00',
+                        secondary: '#232F3E',
+                        'secondary-light': '#37475A',
+                        accent: '#146EB4',
+                        'accent-dark': '#0F5A94',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .sidebar-scrollbar::-webkit-scrollbar { width: 6px; }
+        .sidebar-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .sidebar-scrollbar::-webkit-scrollbar-thumb { background: #888; border-radius: 3px; }
+        .sidebar-scrollbar::-webkit-scrollbar-thumb:hover { background: #555; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Header -->
+    <header class="bg-secondary text-white sticky top-0 z-50 shadow-lg">
+        <div class="px-4 py-3">
+            <div class="flex items-center justify-between">
+                <!-- Logo & Title -->
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <h1 class="text-xl font-bold">
+                            <span class="text-white">Shop</span><span class="text-primary">Hub</span>
+                        </h1>
+                    </a>
+                    <div class="hidden md:block text-sm text-gray-300">Seller Central</div>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="hidden lg:flex flex-1 max-w-xl mx-8">
+                    <input type="text" placeholder="Search orders, products, customers..." class="flex-1 px-4 py-2 rounded-l-md text-gray-800 focus:outline-none text-sm">
+                    <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-r-md transition">
+                        <i class="fas fa-search text-secondary"></i>
+                    </button>
+                </div>
+
+                <!-- Right Side -->
+                <div class="flex items-center gap-4">
+                    <!-- Notifications -->
+                    <button class="relative hover:text-primary transition">
+                        <i class="fas fa-bell text-xl"></i>
+                        <span class="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">5</span>
+                    </button>
+
+                    <!-- Help -->
+                    <button class="hidden md:flex items-center gap-2 hover:text-primary transition text-sm">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help</span>
+                    </button>
+
+                    <!-- Account -->
+                    <div class="flex items-center gap-2 hover:text-primary transition cursor-pointer">
+                        <i class="fas fa-user-circle text-2xl"></i>
+                        <div class="hidden md:block text-sm">
+                            <div class="font-semibold">Admin User</div>
+                        </div>
+                    </div>
+
+                    <!-- View Store -->
+                    <a href="index.html" class="hidden md:block bg-primary hover:bg-primary-dark text-secondary px-4 py-2 rounded-md font-semibold text-sm transition">
+                        View Store
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sub Navigation -->
+        <div class="bg-secondary-light border-t border-gray-700">
+            <div class="px-4 py-2 flex items-center gap-6 text-sm overflow-x-auto">
+                <a href="admin-dashboard.html" class="text-primary font-semibold whitespace-nowrap">Dashboard</a>
+                <a href="admin-orders.html" class="text-gray-300 hover:text-white transition whitespace-nowrap">Orders</a>
+                <a href="admin-products.html" class="text-gray-300 hover:text-white transition whitespace-nowrap">Inventory</a>
+                <a href="#" class="text-gray-300 hover:text-white transition whitespace-nowrap">Advertising</a>
+                <a href="#" class="text-gray-300 hover:text-white transition whitespace-nowrap">Reports</a>
+                <a href="#" class="text-gray-300 hover:text-white transition whitespace-nowrap">Performance</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-gray-200 min-h-screen sticky top-[104px] sidebar-scrollbar overflow-y-auto" style="max-height: calc(100vh - 104px);">
+            <nav class="p-4">
+                <!-- Dashboard Section -->
+                <div class="mb-6">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-2 px-2">Overview</div>
+                    <a href="admin-dashboard.html" class="flex items-center gap-3 px-3 py-2 bg-orange-50 text-primary rounded-md font-semibold mb-1">
+                        <i class="fas fa-chart-line w-5"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-tachometer-alt w-5"></i>
+                        <span>Performance</span>
+                    </a>
+                </div>
+
+                <!-- Orders Section -->
+                <div class="mb-6">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-2 px-2">Orders</div>
+                    <a href="admin-orders.html" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-shopping-cart w-5"></i>
+                        <span>Manage Orders</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-truck w-5"></i>
+                        <span>Shipments</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-undo w-5"></i>
+                        <span>Returns</span>
+                    </a>
+                </div>
+
+                <!-- Inventory Section -->
+                <div class="mb-6">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-2 px-2">Inventory</div>
+                    <a href="admin-products.html" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-boxes w-5"></i>
+                        <span>Manage Inventory</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-plus-circle w-5"></i>
+                        <span>Add Product</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-tags w-5"></i>
+                        <span>Pricing</span>
+                    </a>
+                </div>
+
+                <!-- Advertising Section -->
+                <div class="mb-6">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-2 px-2">Growth</div>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-bullhorn w-5"></i>
+                        <span>Advertising</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-percentage w-5"></i>
+                        <span>Deals</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-gift w-5"></i>
+                        <span>Coupons</span>
+                    </a>
+                </div>
+
+                <!-- Reports Section -->
+                <div class="mb-6">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-2 px-2">Analytics</div>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-chart-bar w-5"></i>
+                        <span>Sales Reports</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-users w-5"></i>
+                        <span>Customers</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-file-invoice-dollar w-5"></i>
+                        <span>Payments</span>
+                    </a>
+                </div>
+
+                <!-- Settings Section -->
+                <div class="mb-6">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-2 px-2">Settings</div>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-cog w-5"></i>
+                        <span>Account Settings</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-md mb-1">
+                        <i class="fas fa-store w-5"></i>
+                        <span>Store Settings</span>
+                    </a>
+                    <a href="login.html" class="flex items-center gap-3 px-3 py-2 text-red-600 hover:bg-red-50 rounded-md mb-1">
+                        <i class="fas fa-sign-out-alt w-5"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 bg-gray-50">
+            <div class="max-w-[1400px] mx-auto">
+                <!-- Welcome Banner -->
+                <div class="bg-gradient-to-r from-accent to-accent-dark text-white rounded-lg p-6 mb-6 shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h2 class="text-2xl font-bold mb-2">Welcome back, Admin!</h2>
+                            <p class="text-blue-100">Here's what's happening with your store today</p>
+                        </div>
+                        <div class="hidden md:block">
+                            <i class="fas fa-chart-line text-6xl opacity-20"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <button class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-left border-l-4 border-primary">
+                        <i class="fas fa-plus-circle text-primary text-2xl mb-2"></i>
+                        <div class="font-semibold text-gray-800">Add Product</div>
+                        <div class="text-xs text-gray-500">Create new listing</div>
+                    </button>
+                    <button class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-left border-l-4 border-green-500">
+                        <i class="fas fa-box text-green-500 text-2xl mb-2"></i>
+                        <div class="font-semibold text-gray-800">Process Orders</div>
+                        <div class="text-xs text-gray-500">12 pending</div>
+                    </button>
+                    <button class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-left border-l-4 border-blue-500">
+                        <i class="fas fa-bullhorn text-blue-500 text-2xl mb-2"></i>
+                        <div class="font-semibold text-gray-800">Create Campaign</div>
+                        <div class="text-xs text-gray-500">Boost sales</div>
+                    </button>
+                    <button class="bg-white p-4 rounded-lg shadow hover:shadow-md transition text-left border-l-4 border-purple-500">
+                        <i class="fas fa-file-alt text-purple-500 text-2xl mb-2"></i>
+                        <div class="font-semibold text-gray-800">View Reports</div>
+                        <div class="text-xs text-gray-500">Analytics</div>
+                    </button>
+                </div>
+
+
+                <!-- Key Metrics -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                    <!-- Sales Today -->
+                    <div class="bg-white rounded-lg shadow p-6 border-t-4 border-primary">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="bg-orange-100 p-3 rounded-lg">
+                                <i class="fas fa-dollar-sign text-primary text-xl"></i>
+                            </div>
+                            <span class="text-green-600 text-sm font-semibold bg-green-100 px-2 py-1 rounded">+12.5%</span>
+                        </div>
+                        <div class="text-gray-500 text-sm mb-1">Sales Today</div>
+                        <div class="text-3xl font-bold text-gray-800 mb-1">$8,234</div>
+                        <div class="text-xs text-gray-500">vs $7,321 yesterday</div>
+                    </div>
+
+                    <!-- Orders -->
+                    <div class="bg-white rounded-lg shadow p-6 border-t-4 border-green-500">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="bg-green-100 p-3 rounded-lg">
+                                <i class="fas fa-shopping-bag text-green-600 text-xl"></i>
+                            </div>
+                            <span class="text-green-600 text-sm font-semibold bg-green-100 px-2 py-1 rounded">+8.2%</span>
+                        </div>
+                        <div class="text-gray-500 text-sm mb-1">Orders Today</div>
+                        <div class="text-3xl font-bold text-gray-800 mb-1">156</div>
+                        <div class="text-xs text-gray-500">12 pending fulfillment</div>
+                    </div>
+
+                    <!-- Conversion Rate -->
+                    <div class="bg-white rounded-lg shadow p-6 border-t-4 border-blue-500">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="bg-blue-100 p-3 rounded-lg">
+                                <i class="fas fa-chart-line text-blue-600 text-xl"></i>
+                            </div>
+                            <span class="text-green-600 text-sm font-semibold bg-green-100 px-2 py-1 rounded">+2.1%</span>
+                        </div>
+                        <div class="text-gray-500 text-sm mb-1">Conversion Rate</div>
+                        <div class="text-3xl font-bold text-gray-800 mb-1">3.24%</div>
+                        <div class="text-xs text-gray-500">Above average</div>
+                    </div>
+
+                    <!-- Visitors -->
+                    <div class="bg-white rounded-lg shadow p-6 border-t-4 border-purple-500">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="bg-purple-100 p-3 rounded-lg">
+                                <i class="fas fa-users text-purple-600 text-xl"></i>
+                            </div>
+                            <span class="text-green-600 text-sm font-semibold bg-green-100 px-2 py-1 rounded">+15.3%</span>
+                        </div>
+                        <div class="text-gray-500 text-sm mb-1">Visitors Today</div>
+                        <div class="text-3xl font-bold text-gray-800 mb-1">4,812</div>
+                        <div class="text-xs text-gray-500">Unique visitors</div>
+                    </div>
+                </div>
+
+
+                <!-- Charts Row -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                    <!-- Sales Chart -->
+                    <div class="lg:col-span-2 bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">Sales Overview</h3>
+                                <p class="text-sm text-gray-500">Last 7 days performance</p>
+                            </div>
+                            <select class="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option>Last 7 days</option>
+                                <option>Last 30 days</option>
+                                <option>Last 90 days</option>
+                            </select>
+                        </div>
+                        <canvas id="salesChart" height="80"></canvas>
+                    </div>
+
+                    <!-- Top Products -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">Top Products</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3">
+                                <img src="https://via.placeholder.com/50x50/4F46E5/ffffff?text=1" alt="Product" class="w-12 h-12 rounded">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-sm text-gray-800">Wireless Headphones</div>
+                                    <div class="text-xs text-gray-500">234 sold</div>
+                                </div>
+                                <div class="text-sm font-bold text-gray-800">$8,234</div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <img src="https://via.placeholder.com/50x50/10B981/ffffff?text=2" alt="Product" class="w-12 h-12 rounded">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-sm text-gray-800">Smart Watch Pro</div>
+                                    <div class="text-xs text-gray-500">189 sold</div>
+                                </div>
+                                <div class="text-sm font-bold text-gray-800">$6,721</div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <img src="https://via.placeholder.com/50x50/F59E0B/ffffff?text=3" alt="Product" class="w-12 h-12 rounded">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-sm text-gray-800">Designer Backpack</div>
+                                    <div class="text-xs text-gray-500">156 sold</div>
+                                </div>
+                                <div class="text-sm font-bold text-gray-800">$4,892</div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <img src="https://via.placeholder.com/50x50/EF4444/ffffff?text=4" alt="Product" class="w-12 h-12 rounded">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-sm text-gray-800">Running Shoes</div>
+                                    <div class="text-xs text-gray-500">142 sold</div>
+                                </div>
+                                <div class="text-sm font-bold text-gray-800">$4,234</div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <img src="https://via.placeholder.com/50x50/8B5CF6/ffffff?text=5" alt="Product" class="w-12 h-12 rounded">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-sm text-gray-800">Coffee Maker</div>
+                                    <div class="text-xs text-gray-500">128 sold</div>
+                                </div>
+                                <div class="text-sm font-bold text-gray-800">$3,892</div>
+                            </div>
+                        </div>
+                        <button class="w-full mt-4 text-accent hover:text-accent-dark font-semibold text-sm">View all products →</button>
+                    </div>
+                </div>
+
+                <!-- Recent Orders & Low Stock -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <!-- Recent Orders -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold text-gray-800">Recent Orders</h3>
+                            <a href="admin-orders.html" class="text-accent hover:text-accent-dark text-sm font-semibold">View all →</a>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-sm text-gray-800">#ORD-001234</div>
+                                    <div class="text-xs text-gray-500">John Doe • 2 items</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-sm text-gray-800">$874.76</div>
+                                    <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Processing</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-sm text-gray-800">#ORD-001233</div>
+                                    <div class="text-xs text-gray-500">Jane Smith • 1 item</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-sm text-gray-800">$1,249.99</div>
+                                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Shipped</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-sm text-gray-800">#ORD-001232</div>
+                                    <div class="text-xs text-gray-500">Mike Johnson • 3 items</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-sm text-gray-800">$329.50</div>
+                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Delivered</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                                <div class="flex-1">
+                                    <div class="font-semibold text-sm text-gray-800">#ORD-001231</div>
+                                    <div class="text-xs text-gray-500">Sarah Williams • 2 items</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-sm text-gray-800">$599.00</div>
+                                    <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded-full">Pending</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Low Stock Alert -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold text-gray-800">Low Stock Alert</h3>
+                            <a href="admin-products.html" class="text-accent hover:text-accent-dark text-sm font-semibold">Manage →</a>
+                        </div>
+                        <div class="bg-red-50 border-l-4 border-red-500 p-3 mb-4 rounded">
+                            <p class="text-red-700 text-sm font-semibold"><i class="fas fa-exclamation-triangle mr-2"></i>8 products need restocking</p>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://via.placeholder.com/40x40/4F46E5/ffffff?text=P" alt="Product" class="w-10 h-10 rounded">
+                                    <div>
+                                        <div class="font-semibold text-sm text-gray-800">Wireless Headphones</div>
+                                        <div class="text-xs text-gray-500">SKU-001</div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-red-600 font-bold text-sm">5 left</div>
+                                    <button class="text-xs text-accent hover:text-accent-dark font-semibold">Restock</button>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://via.placeholder.com/40x40/10B981/ffffff?text=P" alt="Product" class="w-10 h-10 rounded">
+                                    <div>
+                                        <div class="font-semibold text-sm text-gray-800">Smart Watch Pro</div>
+                                        <div class="text-xs text-gray-500">SKU-002</div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-red-600 font-bold text-sm">3 left</div>
+                                    <button class="text-xs text-accent hover:text-accent-dark font-semibold">Restock</button>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://via.placeholder.com/40x40/F59E0B/ffffff?text=P" alt="Product" class="w-10 h-10 rounded">
+                                    <div>
+                                        <div class="font-semibold text-sm text-gray-800">Designer Backpack</div>
+                                        <div class="text-xs text-gray-500">SKU-003</div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-yellow-600 font-bold text-sm">8 left</div>
+                                    <button class="text-xs text-accent hover:text-accent-dark font-semibold">Restock</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Insights -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="font-semibold text-gray-700">Customer Satisfaction</h4>
+                            <i class="fas fa-smile text-green-500 text-xl"></i>
+                        </div>
+                        <div class="text-3xl font-bold text-gray-800 mb-2">4.8/5.0</div>
+                        <div class="flex items-center gap-1 mb-2">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                        </div>
+                        <p class="text-sm text-gray-500">Based on 2,345 reviews</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="font-semibold text-gray-700">Average Order Value</h4>
+                            <i class="fas fa-dollar-sign text-primary text-xl"></i>
+                        </div>
+                        <div class="text-3xl font-bold text-gray-800 mb-2">$52.78</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-600 text-sm font-semibold bg-green-100 px-2 py-1 rounded">+5.2%</span>
+                            <span class="text-sm text-gray-500">vs last month</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="font-semibold text-gray-700">Return Rate</h4>
+                            <i class="fas fa-undo text-blue-500 text-xl"></i>
+                        </div>
+                        <div class="text-3xl font-bold text-gray-800 mb-2">2.1%</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-600 text-sm font-semibold bg-green-100 px-2 py-1 rounded">-0.8%</span>
+                            <span class="text-sm text-gray-500">vs last month</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-6 mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600">
+            <p>&copy; 2024 ShopHub Seller Central. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Chart Script -->
+    <script>
+        // Sales Chart
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        const salesChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Sales',
+                    data: [6500, 7200, 6800, 8100, 7500, 8900, 8234],
+                    borderColor: '#FF9900',
+                    backgroundColor: 'rgba(255, 153, 0, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    pointBackgroundColor: '#FF9900',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#232F3E',
+                        padding: 12,
+                        titleColor: '#fff',
+                        bodyColor: '#fff',
+                        displayColors: false,
+                        callbacks: {
+                            label: function(context) {
+                                return '$' + context.parsed.y.toLocaleString();
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toLocaleString();
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
